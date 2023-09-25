@@ -13,9 +13,6 @@ module "eks" {
     ami_type = "AL2_x86_64"
   }
 
-  # For cost management purposes
-  # a single node group, with a 
-  # single node within the group
   eks_managed_node_groups = {
     one = {
       name = "node-group-1"
@@ -23,8 +20,8 @@ module "eks" {
       instance_types = ["t3.small"]
 
       min_size     = 1
-      max_size     = 1
-      desired_size = 1
+      max_size     = 3
+      desired_size = 2
     }
   }
 }
