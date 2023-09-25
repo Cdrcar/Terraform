@@ -15,6 +15,22 @@ module "eks_cluster" {
   cluster_name    = var.cluster_name
 }
 
+# Provision Security Groups
+module "vpc_security_group" {
+  source = "./modules/security-group"
+
+  vpc_id = module.networking.vpc_id
+}
+
+# Provision RDS
+module "rds" {
+  source = "./modules/RDS"
+
+  private_subnets       = module.networking.private_subnets
+  vpc_security_group_id = [module.vpc_security_group.security-group-id]
+}
+
+
 resource "null_resource" "update_desired_size" {
   triggers = {
     desired_size = 2
