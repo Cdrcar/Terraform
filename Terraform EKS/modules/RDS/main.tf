@@ -8,6 +8,7 @@ resource "aws_db_instance" "mydb" {
   allocated_storage      = 20
   storage_type           = "gp2"
   engine                 = "postgres"
+  db_name                = "mydatabase"
   engine_version         = "11.21"
   instance_class         = "db.t2.micro"
   identifier             = "mydatabase"

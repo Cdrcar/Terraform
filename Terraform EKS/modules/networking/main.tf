@@ -26,3 +26,21 @@ module "vpc" {
     "kubernetes.io/role/internal-elb"           = 1
   }
 }
+
+# resource "aws_internet_gateway" "IGW" { # Creating Internet Gateway
+#   vpc_id = module.vpc.vpc_id              # vpc_id will be generated after we create VPC
+# }
+
+# resource "aws_route_table" "PublicRT-1" { # Creating RT for Public Subnet
+#   vpc_id = module.vpc.vpc_id
+#   route {
+#     cidr_block = "0.0.0.0/0" # Traffic from Public Subnet reaches Internet via Internet Gateway
+#     gateway_id = aws_internet_gateway.IGW.id
+#   }
+# }
+
+# resource "aws_route_table_association" "PrivateRTassociation" {
+  
+#   subnet_id =module.VPC.private_subnets[*].id
+#   route_table_id = aws_route_table.PublicRT-1.id
+# }
